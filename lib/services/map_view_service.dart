@@ -27,15 +27,15 @@ class VITFlutterMapViewWidgetState
       options: MapOptions(
         center: LatLng(12.9692, 79.1559), // VIT VELLORE
         zoom: 17,
-        minZoom: 10,
+        minZoom: 17,
         maxZoom: 19,
         bounds: LatLngBounds(
           LatLng(12.9792, 79.1659),
-          LatLng(12.9690, 79.1550),
+          LatLng(12.9691, 79.1558),
         ),
         maxBounds: LatLngBounds(
           LatLng(12.9792, 79.1659),
-          LatLng(12.9690, 79.1550),
+          LatLng(12.9791999, 79.165899),
         ),
         keepAlive: true,
         interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,

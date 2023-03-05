@@ -14,9 +14,17 @@ class IdeathonConceptApp extends ConsumerWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent)),
       darkTheme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-              brightness: Brightness.dark, seedColor: Colors.redAccent)),
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+            brightness: Brightness.dark, seedColor: Colors.redAccent),
+        bottomSheetTheme: BottomSheetThemeData(
+            backgroundColor:
+                Theme.of(context).colorScheme.background.withOpacity(0),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(26.0),
+                    topRight: Radius.circular(26.0)))),
+      ),
       home: const Scaffold(body: ShuttlePathMapViewConsumerScreen()),
     );
   }

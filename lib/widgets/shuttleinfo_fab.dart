@@ -1,39 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ShuttleInfoFABWidget extends StatefulWidget {
+import 'package:ideathon_concept_app/widgets/draggable_shuttle_info_sheet.dart';
+
+class ShuttleInfoFABWidget extends ConsumerStatefulWidget {
   const ShuttleInfoFABWidget(
       {required this.draggableScrollableController, super.key});
   final DraggableScrollableController draggableScrollableController;
 
   @override
-  State<ShuttleInfoFABWidget> createState() => _ShuttleInfoFABWidgetState();
+  ConsumerState<ShuttleInfoFABWidget> createState() =>
+      _ShuttleInfoFABWidgetState();
 }
 
-class _ShuttleInfoFABWidgetState extends State<ShuttleInfoFABWidget> {
+class _ShuttleInfoFABWidgetState extends ConsumerState<ShuttleInfoFABWidget> {
   @override
   Widget build(BuildContext context) {
-    bool isFabExtended = true;
-    widget.draggableScrollableController.addListener(() {
-      if (widget.draggableScrollableController.size <= 56) {
-        setState(() => isFabExtended = true);
-      } else {
-        setState(() => isFabExtended = false);
-      }
-    });
-    return FloatingActionButton.extended(
-      onPressed: () {
-        if (widget.draggableScrollableController.isAttached) {
-          widget.draggableScrollableController.animateTo(
-              widget.draggableScrollableController.size <= 0 ? 25 / 100 : 0,
-              duration: const Duration(milliseconds: 450),
-              curve: Curves.ease);
-        }
-      },
-      icon: const Icon(Icons.airport_shuttle),
-      label: const Text("Track"),
-      isExtended: isFabExtended,
-      /*isExtended: widget.draggableScrollableController.isAttached &&
-          widget.draggableScrollableController.size == 0,*/
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 450),
+      reverseDuration: const Duration(milliseconds: 175),
+      curve: Curves.ease,
+      clipBehavior: Clip.none,
+      child: FloatingActionButton.extended(
+        icon: const Icon(Icons.airport_shuttle),
+        label: const Text("Track"),
+        isExtended: ref.watch(isFabExtended),
+        onPressed: () {
+          if (widget.draggableScrollableController.isAttached) {
+            double? size;
+            if (widget.draggableScrollableController.size > 0) {
+              size = 0;
+            }
+            widget.draggableScrollableController.animateTo(size ?? .25,
+                duration: const Duration(milliseconds: 275),
+                curve: Curves.ease);
+          }
+        },
+        /*isExtended: widget.draggableScrollableController.isAttached &&
+            widget.draggableScrollableController.size == 0,*/
+      ),
     );
   }
 }

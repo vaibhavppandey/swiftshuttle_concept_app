@@ -6,7 +6,7 @@ import 'package:ideathon_concept_app/widgets/draggable_shuttle_info_sheet.dart';
 import 'package:ideathon_concept_app/widgets/shuttleinfo_fab.dart';
 
 final vitMapSizeRatioToScreen = StateProvider<double>(
-  (ref) => 3 / 4,
+  (ref) => 1,
 );
 
 class ShuttlePathMapViewConsumerScreen extends ConsumerStatefulWidget {
@@ -30,13 +30,6 @@ class _ShuttlePathMapViewConsumerScreenState
 
   @override
   Widget build(BuildContext context) {
-    draggableScrollableController.addListener(() {
-      if (draggableScrollableController.size < 32) {
-        ref.read(vitMapSizeRatioToScreen.notifier).state = 1;
-      } else {
-        ref.read(vitMapSizeRatioToScreen.notifier).state = 3 / 4;
-      }
-    });
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

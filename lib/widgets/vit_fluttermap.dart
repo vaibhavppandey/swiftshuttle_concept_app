@@ -26,18 +26,17 @@ class VITFlutterMapViewWidgetState
     return FlutterMap(
       options: MapOptions(
         center: LatLng(12.9692, 79.1559), // VIT VELLORE
-        zoom: 15,
-        minZoom: 15,
+        zoom: 18,
+        minZoom: 16,
         maxZoom: 18,
         bounds: LatLngBounds(
           LatLng(12.9792, 79.1659),
-          LatLng(12.9690, 79.1550),
+          LatLng(12.9692, 79.1559),
         ),
         maxBounds: LatLngBounds(
-          LatLng(13.0800, 79.25),
-          LatLng(12.0, 78.5),
+          LatLng(12.9792, 79.1659),
+          LatLng(12.9762, 79.1539),
         ),
-        keepAlive: true,
         interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
       ),
       children: [
