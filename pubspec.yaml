@@ -1,5 +1,5 @@
 name: ideathon_concept_app
-description: A new Flutter project.
+description: Save time, get to your classes early, get less exposure to sunlight.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -39,6 +39,10 @@ dependencies:
   flutter_osm_plugin: ^0.50.0
   flutter_map: ^3.1.0
   latlong2: ^0.8.1
+  location: ^4.4.0
+  http: ^0.13.5
+  flutter_launcher_icons: ^0.12.0
+  flutter_native_splash: ^2.2.19
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +54,18 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "assets/icons/swift_shuttle.png"
+  min_sdk_android: 21
+
+flutter_native_splash:
+  color: "#e53935"
+  image: assets/swift_shuttle_banner.png
+  color_dark: "#e53935"
+  image_dark: assets/swift_shuttle_banner.png
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

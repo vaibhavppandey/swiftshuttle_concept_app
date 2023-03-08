@@ -28,29 +28,73 @@ class _DraggableShuttleInfoSheetWidgetState
       }
     });
     return DraggableScrollableSheet(
-        initialChildSize: 25 / 100,
+        initialChildSize: .25,
         minChildSize: 0,
-        maxChildSize: 55 / 100,
+        maxChildSize: .55,
         controller: widget.draggableScrollableController,
         builder: (context, scrollController) {
           return Container(
             color: Colors.transparent,
-            child: ListView.builder(
+            child: ListView.custom(
               controller: scrollController,
-              itemCount: totalShuttles.length,
-              itemBuilder: (context, index) {
+              physics: const ClampingScrollPhysics(),
+              clipBehavior: Clip.antiAlias,
+              // itemCount: totalShuttles.length,
+              childrenDelegate: SliverChildBuilderDelegate(
+                  childCount: totalShuttles.length, (context, index) {
                 Map<String, String> shuttle = totalShuttles[index];
                 return Card(
                     shadowColor: Theme.of(context).colorScheme.shadow,
-                    elevation: 2,
-                    child: ListTile(
-                        onTap: () {},
-                        leading: const Icon(Icons.directions_bus_rounded),
-                        title: Text(
-                            shuttle.putIfAbsent("coverage", () => "coverage")),
-                        trailing: Text(shuttle.putIfAbsent(
-                            "namePlateId", () => "namePlateId"))));
-              },
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 4.0),
+                    elevation: 6,
+                    child: InkWell(
+                      splashFactory: Theme.of(context).splashFactory,
+                      splashColor: Theme.of(context).splashColor,
+                      overlayColor: MaterialStateProperty.all(
+                          Theme.of(context).colorScheme.primary),
+                      child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 12.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.directions_bus_rounded,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withOpacity(.30),
+                                  ),
+                                  const SizedBox(
+                                    width: 32,
+                                  ),
+                                  Text(
+                                      shuttle.putIfAbsent(
+                                          "coverage", () => "coverage"),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium),
+                                ],
+                              ),
+                              Text(
+                                  shuttle.putIfAbsent(
+                                      "namePlateId", () => "namePlateId"),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface
+                                              .withOpacity(.95))),
+                            ],
+                          )),
+                    ));
+              }),
             ),
           );
         });

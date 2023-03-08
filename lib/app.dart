@@ -16,7 +16,7 @@ class IdeathonConceptApp extends ConsumerWidget {
       darkTheme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-            brightness: Brightness.dark, seedColor: Colors.redAccent),
+            brightness: Brightness.dark, seedColor: Colors.red.shade600),
         bottomSheetTheme: BottomSheetThemeData(
             backgroundColor:
                 Theme.of(context).colorScheme.background.withOpacity(0),

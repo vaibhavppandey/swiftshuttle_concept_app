@@ -5,10 +5,6 @@ import 'package:ideathon_concept_app/widgets/vit_fluttermap.dart';
 import 'package:ideathon_concept_app/widgets/draggable_shuttle_info_sheet.dart';
 import 'package:ideathon_concept_app/widgets/shuttleinfo_fab.dart';
 
-final vitMapSizeRatioToScreen = StateProvider<double>(
-  (ref) => 1,
-);
-
 class ShuttlePathMapViewConsumerScreen extends ConsumerStatefulWidget {
   const ShuttlePathMapViewConsumerScreen({super.key});
 
@@ -37,6 +33,7 @@ class _ShuttlePathMapViewConsumerScreenState
           padding: const EdgeInsets.only(left: 4.0),
           child: Material(
             shape: const CircleBorder(),
+            type: MaterialType.button,
             color: Theme.of(context).colorScheme.surface.withOpacity(.75),
             child: IconButton(
               icon: const Icon(Icons.arrow_back_ios_rounded),
@@ -49,7 +46,7 @@ class _ShuttlePathMapViewConsumerScreenState
       body: Stack(clipBehavior: Clip.antiAlias, children: [
         LayoutBuilder(
           builder: (context, constraints) => SizedBox(
-            height: constraints.maxHeight * ref.watch(vitMapSizeRatioToScreen),
+            height: constraints.maxHeight,
             width: constraints.maxWidth,
             child: const VITFlutterMapViewWidget(),
           ),
