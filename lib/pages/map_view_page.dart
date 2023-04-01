@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ideathon_concept_app/widgets/vit_fluttermap.dart';
@@ -30,7 +31,7 @@ class _ShuttlePathMapViewConsumerScreenState
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(left: 4.0),
+          padding: const EdgeInsets.only(left: 8.0, top: 8.0),
           child: Material(
             shape: const CircleBorder(),
             type: MaterialType.button,
@@ -42,6 +43,14 @@ class _ShuttlePathMapViewConsumerScreenState
           ),
         ),
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor:
+              Theme.of(context).colorScheme.background.withOpacity(.40),
+          statusBarIconBrightness:
+              Theme.of(context).brightness == Brightness.light
+                  ? Brightness.dark
+                  : Brightness.light,
+        ),
       ),
       body: Stack(clipBehavior: Clip.antiAlias, children: [
         LayoutBuilder(
